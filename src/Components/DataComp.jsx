@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import Button from "./Button";
 import Cards from "./Cards";
 import Dropdown from "./Dropdown";
+import LoadSpinner from "./LoadSpinner";
 
 const DataComp = () => {
   const [retreats, setRetreats] = useState([]);
   const [originalRetreats, setOriginalRetreats] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [baseUrl, setBaseUrl] = useState(
     "https://669f704cb132e2c136fdd9a0.mockapi.io/api/v1/retreats?page=1&limit=3"
@@ -14,11 +16,18 @@ const DataComp = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch(baseUrl);
-      const data = await response.json();
-
-      setOriginalRetreats(data);
-      setRetreats(data);
+      setIsLoading(true);
+      try {
+        const response = await fetch(baseUrl);
+        const data = await response.json();
+        setRetreats(data);
+        setOriginalRetreats(data);
+      } catch (error) {
+        console.log(error);
+        setRetreats([]);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     getData();
@@ -107,6 +116,10 @@ const DataComp = () => {
     );
     setCurrentPage(1);
   };
+
+  if (isLoading) {
+    return <LoadSpinner />;
+  }
 
   return (
     <div>
