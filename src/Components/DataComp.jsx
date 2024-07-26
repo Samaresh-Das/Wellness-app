@@ -25,16 +25,16 @@ const DataComp = () => {
   }, [baseUrl]);
 
   //function to filter by type
-  const filterByType = (value) => {
-    if (value === "Standalone" || value === "Signature") {
-      const filteredData = originalRetreats.filter(
-        (retreat) => retreat.type === value
+  const filterRetreatByType = (selectedType) => {
+    if (originalRetreats) {
+      const filteredData = originalRetreats.filter((retreat) =>
+        retreat.tag.includes(selectedType)
       );
       setRetreats(filteredData);
-    } else {
-      setRetreats(originalRetreats);
     }
   };
+
+  //function to filter by date
   const filterByDate = (selectedMonth) => {
     if (selectedMonth === "All") {
       setRetreats(originalRetreats);
@@ -128,8 +128,8 @@ const DataComp = () => {
           />
           <Dropdown
             text="Filter by Type"
-            options={["Signature", "Standalone"]}
-            getFilter={filterByType}
+            options={["detox", "Meditation ", "fitness", "yoga", "camp"]}
+            getFilter={filterRetreatByType}
           />
           <Button
             text="Reset"
