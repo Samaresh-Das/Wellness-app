@@ -148,7 +148,7 @@ const DataComp = () => {
         </div>
       </div>
 
-      <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:flex-wrap md:space-x-5">
+      <div className="flex flex-col  space-y-3 md:space-y-0 md:flex-row md:flex-wrap md:justify-between">
         {retreats &&
           retreats.map((retreat) => (
             <Cards
