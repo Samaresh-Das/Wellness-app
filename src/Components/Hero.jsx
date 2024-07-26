@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="my-4 bg-[#e0d9cf] px-3 py-2 rounded-md">
+    <div className="my-4 bg-[#e0d9cf] px-3 py-2 rounded-md hidden md:block">
       <div>
         <img
           src="./assets/hero.jpg"

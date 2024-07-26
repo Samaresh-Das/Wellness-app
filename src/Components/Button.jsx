@@ -1,12 +1,12 @@
 import React from "react";
 
-const Button = ({ text, onClick, disabled }) => {
+const Button = ({ text, onClick, disabled, className }) => {
   return (
     <div>
       <button
-        className={`${
+        className={`${className} ${
           disabled ? "bg-gray-300 text-[#1b3252]" : "bg-[#1b3252] text-white"
-        }  rounded-lg p-3`}
+        }  rounded-lg p-3 `}
         onClick={onClick}
         disabled={disabled}
       >
